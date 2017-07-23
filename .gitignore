@@ -1,3 +1,7 @@
+# Lines added by me
+recordeddata/
+track2data/
+writeup_template.md
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
