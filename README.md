@@ -30,18 +30,18 @@ The goals / steps of this project are the following:
 My project includes the following files:
 * [proj3.py](./proj3.py) -- contains the script to create and train the model
 * [drive.py](./drive.py) -- contains the script for driving the car in autonomous mode
-* [modelnew.h5](./modelnew.h5) -- contains a trained convolutional neural network 
+* [modelbothtracks.h5](./modelbothtracks.h5) -- contains a trained convolutional neural network 
 * [writeup_report.md](./writeup_template.md) -- (this file) contains a writeup report summarizing the results
 
 The car can be driven around either track by executing the following shell command:
 ```sh
-python drive.py modelnew.h5
+python drive.py modelbothtracks.h5
 ```
 The following command can be used to generate and train a new model:
 ```sh
-python proj3.py --epochs=25 --datadirs=./recordeddata,./track1data --model=modelnew.h5
+python proj3.py --epochs=25 --datadirs=./recordeddata,./track1data --model=modelbothtracks.h5
 ```
-The arguments available to pass to proj3.py are as follows:
+The arguments that can be passed to proj3.py are as follows:
 
 | Argument Name     | Description                                  | Default         | 
 |:-----------------:|:--------------------------------------------:|:---------------:| 
@@ -55,7 +55,7 @@ The arguments available to pass to proj3.py are as follows:
 
 All arguments are optional. The following command line was used for training. 
 ```sh
-python proj3.py --epochs=25 --datadirs=./recordeddata,./track2data --model=modelnew.h5
+python proj3.py --epochs=25 --datadirs=./recordeddata,./track2data --model=modelbothtracks.h5
 ```
 The following is an example of a command line that can be used just to visualize the data. 
 ```sh
@@ -65,7 +65,7 @@ When data is visualized, jpg images of the plots are both shown on the screen an
 
 ### Model Architecture and Training Strategy
 
-I initially used the nVidia architcture as shown [here](https://arxiv.org/pdf/1604.07316v1.pdf). I read this paper in its entirety prior to starting on the project. I figured that using the neural network architecture used by one of the leaders in the AV space was a sound starting point. Pursuant to this, my initial neural network architecture consisted of 5 convolutional layers with 5x5 filter sizes on the first 3 convolutional layers and 3x3 filter sizes on the last 2. The output of the convolutional layers was then flattened and fed to 4, fully-connected layers. The depths of the convolutional layers varied between 64 and 24 (see the function in model.py called build_model at lines 154-171). The model includes ELU layers to introduce nonlinearity. The input images are normalized using a lambda layer. The model summary showed there to be 252,219 trainable parameters. The architecture is shown below. 
+I initially used the neural network architcture from the nVidia End to End Learning [paper](https://arxiv.org/pdf/1604.07316v1.pdf). I read this paper in its entirety prior to starting on the project. I figured that copying the architecture used by one of the leaders in the AV space was a sound starting point. Pursuant to this, my initial neural network architecture consisted of 5 convolutional layers with 5x5 filter sizes on the first 3 convolutional layers and 3x3 filter sizes on the last 2. The output of the convolutional layers was then flattened and fed to 4, fully-connected layers. The depths of the convolutional layers varied between 64 and 24 (see the function in model.py called build_model at lines 159-175). The model includes ELU layers to introduce nonlinearity. The input images are normalized using a lambda layer. The model summary showed there to be 252,219 trainable parameters. The architecture is shown below. 
 
 <p align="center">
 <img width=200 height=1100 src="./visualization/model.jpg">
