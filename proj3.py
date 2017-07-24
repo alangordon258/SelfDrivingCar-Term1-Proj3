@@ -180,29 +180,29 @@ def build_model_with_regularization():
     model.add(Lambda(lambda x: x / 127.5 - 1.0, input_shape=(66, 200, 3)))
 
     # Add three 5x5 convolution layers (with output depths: 24, 36, and 48), with 2x2 stride and regularization
-    model.add(Convolution2D(24, 5, 5, subsample=(2, 2), border_mode='valid', W_regularizer=l2(0.001)))
-    model.add(ELU())
-    model.add(Convolution2D(36, 5, 5, subsample=(2, 2), border_mode='valid', W_regularizer=l2(0.001)))
-    model.add(ELU())
-    model.add(Convolution2D(48, 5, 5, subsample=(2, 2), border_mode='valid', W_regularizer=l2(0.001)))
-    model.add(ELU())
+    model.add(Convolution2D(24, 5, 5, subsample=(2, 2), border_mode='valid', activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
+    model.add(Convolution2D(36, 5, 5, subsample=(2, 2), border_mode='valid', activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
+    model.add(Convolution2D(48, 5, 5, subsample=(2, 2), border_mode='valid', activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
 
     # Add two 3x3 convolution layers with output depth 64
-    model.add(Convolution2D(64, 3, 3, border_mode='valid', W_regularizer=l2(0.001)))
-    model.add(ELU())
-    model.add(Convolution2D(64, 3, 3, border_mode='valid', W_regularizer=l2(0.001)))
-    model.add(ELU())
+    model.add(Convolution2D(64, 3, 3, border_mode='valid', activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
+    model.add(Convolution2D(64, 3, 3, border_mode='valid', activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
 
     # Add a flatten layer
     model.add(Flatten())
 
     # Add three fully connected layers with output depths: 100, 50, 10, ELU activation with regularization
-    model.add(Dense(100, W_regularizer=l2(0.001)))
-    model.add(ELU())
-    model.add(Dense(50, W_regularizer=l2(0.001)))
-    model.add(ELU())
-    model.add(Dense(10, W_regularizer=l2(0.001)))
-    model.add(ELU())
+    model.add(Dense(100, activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
+    model.add(Dense(50, activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
+    model.add(Dense(10, activation='elu', W_regularizer=l2(0.001)))
+#    model.add(ELU())
 
     # Add fully connected output layer
     model.add(Dense(1))
@@ -411,7 +411,7 @@ else:
 if do_visualization:
 # I had to comment out the call to plot when running on Ubuntu server because pyplot is missing in the carnd virtualenv
     plot(model, to_file='./visualization/model.jpg',show_shapes=True,show_layer_names=False)
-#    print("Whatever")
+    print("Whatever")
 
 if not do_visualization:
     if use_generator:
