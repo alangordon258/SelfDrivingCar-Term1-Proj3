@@ -30,6 +30,7 @@ My project includes the following files:
 * [proj3.py](./proj3.py) -- contains the script to create and train the model
 * [drive.py](./drive.py) -- contains the script for driving the car in autonomous mode
 * [modelbothtracks.h5](./modelbothtracks.h5) -- contains a trained convolutional neural network 
+
 The car can be driven around either track by executing the following shell command:
 ```sh
 python drive.py modelbothtracks.h5
